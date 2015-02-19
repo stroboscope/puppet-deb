@@ -1,0 +1,5 @@
+debian/vim-puppet.yaml /usr/share/vim/registry
+ext/vim/ftdetect/puppet.vim /usr/share/vim/addons/ftdetect
+ext/vim/ftplugin/puppet.vim /usr/share/vim/addons/ftplugin
+ext/vim/syntax/puppet.vim /usr/share/vim/addons/syntax
+ext/vim/indent/puppet.vim /usr/share/vim/addons/indent

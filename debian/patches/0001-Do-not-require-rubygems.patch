@@ -1,0 +1,21 @@
+From: Stig Sandbeck Mathisen <ssm@debian.org>
+Date: Fri, 20 Dec 2013 08:52:29 +0100
+Subject: Do not require rubygems
+
+---
+ spec/spec_helper.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/spec/spec_helper.rb b/spec/spec_helper.rb
+index 49fa482..a71f0cb 100755
+--- a/spec/spec_helper.rb
++++ b/spec/spec_helper.rb
+@@ -14,7 +14,7 @@ rescue LoadError
+ end
+ 
+ require 'puppet'
+-gem 'rspec', '>=2.0.0'
++require 'rspec'
+ require 'rspec/expectations'
+ 
+ # So everyone else doesn't have to include this base constant.

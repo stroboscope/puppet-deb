@@ -1,0 +1,4 @@
+0001-Do-not-require-rubygems.patch
+0002-Set-passenger-puppet-master-document-root.patch
+0003-fix-puppet-master-logcheck-rule.patch
+0004-debian-service-provider-use-service.patch

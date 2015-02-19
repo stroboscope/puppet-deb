@@ -1,0 +1,12 @@
+puppet for Debian
+------------------
+
+To enable the puppet agent after installation, run
+
+ "puppet agent --enable"
+
+The default puppet configuration in Debian will automatically integrate with
+etckeeper if etckeeper is installed. puppet will automatically commit any
+changes made to files in /etc via etckeeper before and after its run.
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>, Mon,  5 Aug 2013 23:36:19 +0200

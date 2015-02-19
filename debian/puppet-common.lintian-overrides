@@ -1,0 +1,5 @@
+# Man pages are automatically generated, not much to do here
+puppet-common binary: manpage-has-bad-whatis-entry
+
+# puppet manifests many use puppet as interpreter
+puppet-common binary: example-unusual-interpreter * #!puppet

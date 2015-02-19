@@ -1,0 +1,207 @@
+Source: puppet
+Section: admin
+Priority: optional
+Maintainer: Sergey Viuchny <sergey@de-bs.ru>
+Build-Depends:
+ debhelper (>= 9~),
+ dh-systemd,
+ facter,
+ rake,
+ ruby-hiera,
+Standards-Version: 3.9.6
+Vcs-Git: https://github.com/stroboscope/puppet-deb.git
+Homepage: http://projects.puppetlabs.com/projects/puppet
+Testsuite: autopkgtest
+
+Package: puppet-common
+Architecture: all
+Depends: ${misc:Depends},
+ adduser,
+ facter,
+ ruby-augeas,
+ ruby-hiera,
+ lsb-base,
+ ruby | ruby-interpreter,
+ ruby-safe-yaml,
+ ruby-shadow,
+ sysv-rc | file-rc,
+Recommends:
+ debconf-utils,
+ lsb-release,
+ ruby-rgen,
+ ruby-selinux,
+Suggests: ruby-rrd | librrd-ruby
+Breaks: puppet (<< 2.7.5-3), puppetmaster (<< 0.25.4-1), ruby-hiera-puppet
+Replaces: puppet (<< 2.7.5-3), puppetmaster (<< 0.25.4-1), ruby-hiera-puppet
+Description: configuration management system
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package contains the puppet software and documentation. To
+ automatically start a puppet agent, install the "puppet" package. To
+ install and configure a puppet master, install one of the
+ "puppetmaster" or "puppetmaster-passenger" packages.
+
+Package: puppet
+Architecture: all
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends},
+ puppet-common (= ${binary:Version}),
+ ruby | ruby-interpreter,
+Suggests: puppet-el, vim-puppet, etckeeper
+Description: configuration management system, agent
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package contains "puppet" service and init script used to run
+ the puppet agent, and depend on the "puppet-common" package which
+ contains the software.
+
+Package: puppetmaster-common
+Architecture: all
+Depends: ${misc:Depends},
+ lsb-base,
+ puppet-common (= ${binary:Version}),
+ ruby | ruby-interpreter,
+Breaks: puppet (<< 0.24.7-1), puppetmaster (<< 2.7.6-1~)
+Replaces: puppet (<< 0.24.7-1), puppetmaster (<< 2.7.6-1~)
+Suggests:
+ apache2 | nginx,
+ puppet-el,
+ ruby-ldap,
+ ruby-stomp,
+ stompserver,
+ vim-puppet,
+Description: configuration management system, master common files
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package contains configuration files used by both puppetmaster
+ and puppetmaster-common packages.
+
+Package: puppetmaster
+Architecture: all
+Depends: ${misc:Depends},
+ puppetmaster-common (= ${source:Version}),
+ ruby | ruby-interpreter,
+Breaks: puppet (<< 0.24.7-1)
+Replaces: puppet (<< 0.24.7-1)
+Description: configuration management system, master service
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package contains the "puppetmaster" service and init script,
+ which is suitable for small deployments.
+
+Package: puppetmaster-passenger
+Architecture: all
+Depends: ${misc:Depends},
+ apache2,
+ libapache2-mod-passenger,
+ lsb-base,
+ puppetmaster-common (= ${source:Version}),
+ ruby | ruby-interpreter,
+Breaks: puppetmaster (<< 2.6.1~rc2-1)
+Replaces: puppetmaster (<< 2.6.1~rc2-1)
+Description: configuration management system, scalable master service
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package provides a puppet master running under apache with
+ mod_passenger, suitable for large deployments. This offers better
+ scalability than the "puppetmaster" package.
+
+Package: vim-puppet
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: vim-addon-manager
+Breaks: puppet (<< 0.25.4-1)
+Replaces: puppet (<< 0.25.4-1)
+Description: syntax highlighting for puppet manifests in vim
+ The vim-puppet package provides filetype detection and syntax
+ highlighting for puppet manifests (files ending with ".pp").
+ .
+ As per the Debian vim policy, installed addons are not activated
+ automatically, but the "vim-addon-manager" tool can be used for this
+ purpose.
+
+Package: puppet-el
+Architecture: all
+Depends: ${misc:Depends}, emacsen-common
+Breaks: puppet (<< 0.25.4-1)
+Replaces: puppet (<< 0.25.4-1)
+Conflicts: emacsen-common (<< 2.0.0)
+Description: syntax highlighting for puppet manifests in emacs
+ The puppet-el package provides syntax highlighting for puppet
+ manifests (files ending with (".pp").
+ .
+ As per the Debian emacs policy, installed addons are activated
+ automatically.
+
+Package: puppet-testsuite
+Architecture: all
+Depends: ${misc:Depends},
+ git-core,
+ lsb-base,
+ puppet-common (= ${source:Version}),
+ ruby | ruby-interpreter,
+ ruby-ldap,
+ ruby-mocha,
+ ruby-rack,
+ ruby-rspec,
+ ruby-sqlite3,
+Recommends:
+ cron,
+ ruby-rgen,
+Suggests: ruby
+Description: configuration management system, development test suite
+ Puppet is a server automation tool. It is composed of a declarative
+ language for expressing system configuration, a client and server for
+ distributing it, and a library for realizing the configuration.
+ .
+ The primary design goal of Puppet is to have an expressive enough
+ language backed by a powerful enough library that you can write your
+ own server automation applications in just a few lines of code.
+ Puppet’s deep extensibility and open source license lets you add
+ functionality as needed and share your innovations with others.
+ .
+ This package provides all the tests from the upstream puppet source
+ code. The tests are used for improving the QA of the puppet package.
+ .
+ Tests are installed under /usr/share/puppet-testsuite, and can be
+ performed using "rake unit" in that directory.

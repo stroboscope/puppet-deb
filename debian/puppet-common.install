@@ -1,0 +1,7 @@
+/usr/bin/extlookup2hiera
+/usr/bin/puppet
+/usr/lib/ruby/vendor_ruby/*
+debian/etckeeper-commit-post /etc/puppet
+debian/etckeeper-commit-pre /etc/puppet
+debian/puppet.conf /etc/puppet
+ext/ldap/puppet.schema /etc/ldap/schema

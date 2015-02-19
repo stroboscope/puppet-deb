@@ -1,0 +1,7 @@
+addon: puppet
+description: "Syntax highlighting for puppet"
+files:
+  - ftdetect/puppet.vim
+  - ftplugin/puppet.vim
+  - indent/puppet.vim
+  - syntax/puppet.vim

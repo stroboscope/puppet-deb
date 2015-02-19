@@ -1,0 +1,4 @@
+# Remove renamed configuration files which are now handled by other packages
+rm_conffile /etc/logrotate.d/puppet 2.6.4-2
+rm_conffile /etc/logcheck/ignore.d.server/puppet 2.6.4-2
+rm_conffile /etc/emacs/site-start.d/50puppet-mode-init.el 2.6.4-2

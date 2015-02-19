@@ -1,0 +1,26 @@
+From: Stig Sandbeck Mathisen <ssm@debian.org>
+Date: Fri, 20 Dec 2013 08:52:29 +0100
+Subject: Set passenger puppet master document root
+
+Forwarded: not-needed
+Bug-Debian: http://bugs.debian.org/662866
+---
+ ext/rack/example-passenger-vhost.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ext/rack/example-passenger-vhost.conf b/ext/rack/example-passenger-vhost.conf
+index 860e6f3..ddbfae0 100644
+--- a/ext/rack/example-passenger-vhost.conf
++++ b/ext/rack/example-passenger-vhost.conf
+@@ -40,9 +40,9 @@ Listen 8140
+         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
+         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
+ 
+-        DocumentRoot /etc/puppet/rack/public/
++        DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+         RackBaseURI /
+-        <Directory /etc/puppet/rack/>
++        <Directory /usr/share/puppet/rack/puppetmasterd/>
+                 Options None
+                 AllowOverride None
+                 Order allow,deny

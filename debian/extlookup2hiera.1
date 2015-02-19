@@ -1,0 +1,32 @@
+.TH "EXTLOOKUP2HIERA" "1" "2012" "extlookup2hiera" "Utils"
+.SH "NAME"
+extlookup2hiera \- A 'puppet extlookup'\-CSV converter
+.SH "SYNOPSIS"
+.LP 
+.B extlookup2hiera [\fBoptions\fR]
+.SH "DESCRIPTION"
+.LP
+extlookup2hiera is a converter for 'puppet extlookup'\-CSV files into 'Hiera'\-JSON or \-YAML files.
+.LP
+.br 
+.SH "OPTIONS"
+.LP 
+.TP
+\fB\-i\fR, \fB\-\-in\fR FILE
+Input CSV file
+.TP
+\fB\-o\fR, \fB\-\-out\fR FILE
+Output Hiera file
+.TP
+\fB\-j\fR, \fB\-\-json\fR
+Create JSON format file
+.PP
+.LP
+When used without \fB\-j\fR or \fB\-\-json\fR it'll fallback to creating a YAML format file.
+.br
+.SH "AUTHORS"
+.LP 
+extlookup2hiera is a part of Puppet Hiera and developed by Puppet Labs <info@puppetlabs.com>, (R.I.Pienaar <rip@devco.net> respectively).
+.LP
+This man page was written by Patrick Ringl <patrick_@freenet.de> for the Debian
+GNU/Linux distribution (but it may also be used by others).

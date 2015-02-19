@@ -1,0 +1,1 @@
+puppetmaster-passenger binary: package-contains-empty-directory usr/share/puppet/rack/puppetmasterd/*

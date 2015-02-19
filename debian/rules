@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Verbose mode
+export DH_VERBOSE=1
+
+%:
+	dh $@ --with=systemd
+
+override_dh_installinit:
+	dh_installinit -ppuppetmaster
+	dh_installinit --name=puppetqd
+	dh_installinit -ppuppet --error-handler=true -- defaults 21
+
+override_dh_auto_install:
+	./install.rb --destdir=debian/tmp --sitelibdir=/usr/lib/ruby/vendor_ruby --ruby=/usr/bin/ruby
+	rm -vfr debian/tmp/usr/lib/ruby/vendor_ruby/puppet/vendor/safe_yaml/
+	rm -vfr debian/tmp/usr/lib/ruby/vendor_ruby/puppet/vendor/rgen/
+
+override_dh_install:
+	dh_install --fail-missing -Xusr/share/man
+	mv debian/puppetmaster-passenger/usr/share/puppetmaster-passenger/example-passenger-vhost.conf \
+	  debian/puppetmaster-passenger/usr/share/puppetmaster-passenger/apache2.site.conf.tmpl
+	chmod 755 debian/puppet-common/etc/puppet/etckeeper-commit-post
+	chmod 755 debian/puppet-common/etc/puppet/etckeeper-commit-pre
+	echo 0 > debian/puppet-el/usr/lib/emacsen-common/packages/compat/puppet-el
+
+override_dh_installlogcheck:
+	ln ext/logcheck/puppet debian/puppet-common.logcheck.ignore.server
+	dh_installlogcheck
+
+override_dh_installexamples:
+	dh_installexamples
+	find debian/puppet-common/usr/share/doc/puppet-common/examples -type f -print0 | \
+	  xargs -r -0 chmod 644
+
+override_dh_clean:
+	dh_clean debian/puppet-common.logcheck.ignore.server metadata.yml

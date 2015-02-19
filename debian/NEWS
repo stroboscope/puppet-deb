@@ -1,0 +1,25 @@
+puppet (3.2.4-1) unstable; urgency=high
+
+  The puppet agent is now started by default, regardless of init system.
+
+    - On a fresh installation, you will need to run "puppet agent --enable"
+      before it will connect to a puppet master to retrieve its catalog.
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Fri, 16 Aug 2013 14:39:55 +0200
+
+puppet (3.1.0-1) experimental; urgency=low
+
+  Puppet 3.x introduces incompatible changes.
+  
+  For the puppet DSL, dynamic variable scoping has been removed. This
+  means that your manifests may need changes to work as intended. See
+  http://docs.puppetlabs.com/guides/scope_and_puppet.html
+
+  Authorization of clients in /etc/puppet/auth.conf now matches client
+  certificate names only. There is a new allow_ip keyword in auth.conf if
+  you want to permit IP addresses.
+
+  For the full list of changes, see:
+  http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#3.1.0
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Mon, 04 Mar 2013 08:48:15 +0100

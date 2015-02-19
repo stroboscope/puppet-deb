@@ -1,0 +1,17 @@
+puppet (3.2.4-1) unstable; urgency=high
+
+  Two manual configuration changes needed for puppetmaster-passenger
+
+  For systems upgrading from apache 2.2 to apache 2.4, the file
+  /etc/apache2/sites-enabled/puppetmaster should be renamed to
+  /etc/apache2/sites-enabled/puppetmaster.conf
+
+  Some passenger options used by puppetmaster-passenger in the past have been
+  deprecated on passenger 4.0.0.  You will most likely have to remove the
+  keywords "RailsAutoDetect" and "RackAutoDetect" from puppetmaster-passenger's
+  apache2 configuration, by default in /etc/apache2/sites-enabled/puppetmaster.conf
+
+  For more information about this from Phusion Passenger. See
+  http://www.modrails.com/documentation/Users%20guide%20Apache.html#_railsautodetect_rackautodetect_and_wsgiautodetect
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Fri, 16 Aug 2013 14:55:46 +0200

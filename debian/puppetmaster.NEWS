@@ -1,0 +1,32 @@
+puppet (2.7.12-3) unstable; urgency=low
+
+  This version of puppetmaster, only provides a single threaded puppet master.
+  This has been the default configuration. If you have not configured the
+  puppet master to run several processes with mongrel, nothing has changed.
+
+  The "mongrel" package is being removed from Debian, so we no provide
+  configuration for it.  Support for mongrel has been removed from
+  /etc/defaults/puppetmaster and /etc/init.d/puppetmaster.
+
+  If you need better performance, please install the "puppetmaster-passenger"
+  package.  Note that this implies installation of the apache2 web server.
+
+  There are other options, although not provided by the puppet packaging team.
+  Consider looking to the "thin" package for a more or less direct replacement
+  for "mongrel".
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Tue, 03 Apr 2012 19:11:29 +0200
+
+puppet (2.6.1~rc3-1) experimental; urgency=low
+
+  Some packages recommended by the puppetmaster package are now suggested
+  instead, since they are not needed for the default operation of the
+  puppetmaster package.  This means they are not installed by default.
+
+  The packages affected are "libldap-ruby1.8", used for external nodes in LDAP,
+  "rdoc", which is used by puppet doc, and "rails", which is used for stored
+  configurations.
+
+  If you need this functionality, please install the packages explicitly.
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Fri, 27 Aug 2010 12:17:02 +0200

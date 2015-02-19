@@ -1,0 +1,5 @@
+etc/puppet/manifests
+etc/puppet/modules
+var/lib/puppet
+var/log/puppet
+usr/share/puppet/modules
